@@ -4,10 +4,10 @@ import { format, parseISO } from 'date-fns'
 //The baseUrl configuration option on tsconfig.json allows you to import directly from the root of the project.
 import components from 'components/MDXComponents';
 import { allPodcasts } from '.contentlayer/data';
-import type { Post } from '.contentlayer/types';
+import type { Podcast } from '.contentlayer/types';
 import Link from 'next/link';
 
-export default function Post({ post }: { post: Post }) {
+export default function Post({ post }: { post: Podcast }) {
 const Component = useMDXComponent(post.body.code);
   return (
     <>

@@ -4,14 +4,14 @@ import { format, parseISO } from 'date-fns'
 import { allPodcasts } from '.contentlayer/data'
 import { pick } from "@contentlayer/client"
 import { InferGetStaticPropsType } from 'next'
-import type { Post } from '.contentlayer/types';
+import type { Podcast } from '.contentlayer/types';
 
 
 export function getStaticProps() {
   const posts =  allPodcasts
-    .map((post:Post) => pick(post, ['slug', 'title', 'summary', 'date']))
+    .map((post:Podcast) => pick(post, ['slug', 'title', 'summary', 'date']))
     .sort(
-      (a:Post, b:Post) =>
+      (a:Podcast, b:Podcast) =>
         Number(new Date(b.date)) - Number(new Date(a.date))
     );
 
@@ -19,7 +19,7 @@ export function getStaticProps() {
 }
 
 
-function PostCard(post:Post) {
+function PostCard(post:Podcast) {
   return (
     <div>
       <time dateTime={post.date} >
@@ -43,7 +43,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
 
       <h1>Contentlayer Podcast Example</h1>
 
-      {posts.map((post:Post, idx) => (
+      {posts.map((post:Podcast, idx) => (
         <PostCard key={idx} {...post} />
       ))}
     </div>
