@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { format, parseISO } from 'date-fns'
-import components from '/components/MDXComponents';
+//The baseUrl configuration option on tsconfig.json allows you to import directly from the root of the project.
+import components from 'components/MDXComponents';
 import { allPodcasts } from '.contentlayer/data';
 import type { Post } from '.contentlayer/types';
 import Link from 'next/link';
