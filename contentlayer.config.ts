@@ -7,8 +7,8 @@ import readingTime from 'reading-time';
 
 
 export const Post = defineDocumentType(() => ({
-  name: 'Post',
-  filePathPattern: `blog/*.mdx`,
+  name: 'Podcast',
+  filePathPattern: `episodes/*.mdx`,
 bodyType: 'mdx',
   fields: {
     title: {
@@ -28,6 +28,10 @@ bodyType: 'mdx',
     image: {
       type: 'string',
       required: true
+    },
+ audioPath: {
+      type: 'string',
+      required: false
     }
   },
   computedFields

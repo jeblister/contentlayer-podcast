@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { format, parseISO } from 'date-fns'
 import components from '/components/MDXComponents';
-import { allPosts } from '.contentlayer/data';
+import { allPodcasts } from '.contentlayer/data';
 import type { Post } from '.contentlayer/types';
 import Link from 'next/link';
 
@@ -39,13 +39,13 @@ const Component = useMDXComponent(post.body.code);
 
 export async function getStaticPaths() {
   return {
-    paths: allPosts.map((p) => ({ params: { slug: p.slug } })),
+    paths: allPodcasts.map((p) => ({ params: { slug: p.slug } })),
     fallback: false
   };
 }
 
 export async function getStaticProps({ params }) {
-  const post = allPosts.find((post) => post.slug === params.slug);
+  const post = allPodcasts.find((post) => post.slug === params.slug);
 
   return { props: { post} };
 }

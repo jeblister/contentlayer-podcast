@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
-import { allPosts } from '.contentlayer/data'
+import { allPodcasts } from '.contentlayer/data'
 import { pick } from "@contentlayer/client";
 
 
 export function getStaticProps() {
-  const posts =  allPosts
+  const posts =  allPodcasts
     .map((post) => pick(post, ['slug', 'title', 'summary', 'date']))
     .sort(
       (a, b) =>
@@ -36,10 +36,10 @@ export default function Home({ posts }) {
   return (
     <div>
       <Head>
-        <title>Contentlayer Blog Example</title>
+        <title> Podcast Example</title>
       </Head>
 
-      <h1>Contentlayer Blog Example</h1>
+      <h1>Contentlayer Podcast Example</h1>
 
       {posts.map((post, idx) => (
         <PostCard key={idx} {...post} />
