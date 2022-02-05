@@ -17,22 +17,19 @@ const Component = useMDXComponent(post.body.code);
       <article>
         <div>
           <Link href="/">
-            <a>Home</a>
+          <a>Home</a>
           </Link>
         </div>
-        <div >
-          <h1 >{post.title}</h1>
+        <div>
+          <h1>{post.title}</h1>
           <time dateTime={post.date}>
-             {format(parseISO(post.date), 'LLLL d, yyyy')}
+            {format(parseISO(post.date), 'LLLL d, yyyy')}
           </time>
+          <p>
+            {post.readingTime.text}   
+          </p>
         </div>
-             <Component
-        components={
-          {
-            ...components
-          } as any
-        }
-      />
+        <Component components={ { ...components } as any } />
       </article>
     </>
   );
