@@ -1,29 +1,27 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
-import { allPodcasts } from '.contentlayer/data'
-import { pick } from "@contentlayer/client"
-import { InferGetStaticPropsType } from 'next'
-import type { Podcast } from '.contentlayer/types';
-
+import Head from "next/head";
+import Link from "next/link";
+import { format, parseISO } from "date-fns";
+import { allPodcasts } from ".contentlayer/data";
+import { pick } from "@contentlayer/client";
+import { InferGetStaticPropsType } from "next";
+import type { Podcast } from ".contentlayer/types";
 
 export function getStaticProps() {
-  const posts =  allPodcasts
-    .map((post:Podcast) => pick(post, ['slug', 'title', 'summary', 'date']))
+  const posts = allPodcasts
+    .map((post: Podcast) => pick(post, ["slug", "title", "summary", "date"]))
     .sort(
-      (a:Podcast, b:Podcast) =>
+      (a: Podcast, b: Podcast) =>
         Number(new Date(b.date)) - Number(new Date(a.date))
     );
 
   return { props: { posts } };
 }
 
-
-function PostCard(post:Podcast) {
+function PostCard(post: Podcast) {
   return (
     <div>
-      <time dateTime={post.date} >
-        {format(parseISO(post.date), 'LLLL d, yyyy')}
+      <time dateTime={post.date}>
+        {format(parseISO(post.date), "LLLL d, yyyy")}
       </time>
       <h2>
         <Link href={`/blog/${post.slug}`}>
@@ -31,10 +29,12 @@ function PostCard(post:Podcast) {
         </Link>
       </h2>
     </div>
-  )
+  );
 }
 
-export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <Head>
@@ -43,9 +43,9 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
 
       <h1>Contentlayer Podcast Example</h1>
 
-      {posts.map((post:Podcast, idx) => (
+      {posts.map((post: Podcast, idx) => (
         <PostCard key={idx} {...post} />
       ))}
     </div>
-  )
+  );
 }
